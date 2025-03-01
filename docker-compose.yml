@@ -9,7 +9,7 @@ services:
       - ./app:/var/www/html
     restart: always
     environment:
-      - DB_HOST=<RDS-ENDPOINT>
-      - DB_USER=<YOUR_DB_USERNAME>
-      - DB_PASSWORD=<YOUR_DB_PASSWORD>
-      - DB_NAME=<YOUR_DATABASE_NAME>
+      - DB_HOST=database-1.copsassmgk3b.us-east-1.rds.amazonaws.com
+      - DB_USER=admin
+      - DB_PASSWORD=Test1234
+      - DB_NAME=demo_project
