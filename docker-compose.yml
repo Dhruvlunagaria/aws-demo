@@ -1,42 +1,15 @@
-version: '3.8'
-
+version: '3'
 services:
-  php-apache:
-    image: php:8.2-apache
-    container_name: php-app
-    volumes:
-      - .:/var/www/html
+  php-app:
+    image: php:apache
+    container_name: php_app
     ports:
-      - "8080:80"
-    depends_on:
-      - mysql
-    restart: always
-
-  mysql:
-    image: mysql:5.7
-    container_name: mysql-db
+      - "80:80"
+    volumes:
+      - ./app:/var/www/html
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: demo_project
-      MYSQL_USER: user
-      MYSQL_PASSWORD: test
-    volumes:
-      - mysql_data:/var/lib/mysql
-    ports:
-      - "3306:3306"
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    restart: always
-    depends_on:
-      - mysql
-    environment:
-      PMA_HOST: mysql
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "8081:80"
-
-volumes:
-  mysql_data:
+      - DB_HOST=<RDS-ENDPOINT>
+      - DB_USER=<YOUR_DB_USERNAME>
+      - DB_PASSWORD=<YOUR_DB_PASSWORD>
+      - DB_NAME=<YOUR_DATABASE_NAME>
